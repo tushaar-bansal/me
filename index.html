@@ -1,44 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home</title>
-
-  <!-- Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Tushaar Bansal</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+<body>
 
-<body class="home">
-  <main class="page">
-    <header class="top">
-      <nav class="nav">
-        <a class="nav-link" href="blog.html">BLOG</a>
-        <a class="nav-link active" href="index.html">HOME</a>
-        <a class="nav-link" href="projects.html">PROJECTS</a>
-        <a class="nav-link" href="contact.html">CONTACT</a>
-      </nav>
+  <!-- Navigation -->
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="blog.html">Blog</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About Me</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-      <section class="intro">
-        <h1 class="name">Tushaar Bansal</h1>
-        <p class="bio">
-          An Information Systems senior at SDSU, exploring intelligent systems, agents, 
-          and their real-world constraints.<span class="em"><br>Build to understand.</span><br>
-          <a href="projects.html" class="intro-link">[ View Projects ]</a><br><a href="resume.html"class="intro-link">[ Download Resume ]</a>
-        </p>
-      </section>
-    </header>
+  <!-- Main content -->
+  <main class="container">
+    <section class="intro">
+      <h1>Tushaar Bansal</h1>
+      <p>
+        I am an international student from India and a Management Information Systems student at SDSU.
+        I became interested in AI through research and related projects, and I enjoy learning more about
+        intelligent systems and their real-world applications.
+      </p>
 
-    <!-- Image layer -->
-    <div class="hero" aria-hidden="true">
-      <img src="skyline.JPG" alt="" />
-    </div>
+      <p class="home-links">
+        <a href="about.html">About Me</a>
+        <a href="Tushaar_Bansal_Resume.pdf" download>Download Resume</a>
+      </p>
+    </section>
+
+    <section class="image-section">
+      <img src="skyline.JPG" alt="City skyline">
+    </section>
   </main>
-  
-  <script src="tilt.js"></script>
+
 </body>
 </html>
