@@ -1,0 +1,484 @@
+:root{
+  --bg: #040406;
+  --text: #F5EFE6;
+  --line: rgba(222, 138, 255, 0.55);
+
+  /* spacing scales nicely across devices */
+  --padX: clamp(20px, 6vw, 120px);
+  --padTop: clamp(28px, 6vh, 70px);
+
+  /* controls how much scroll exists */
+  --pageH: 130svh;
+
+  /* skyline defaults (HOME) */
+  --sky-opacity: 0.95;
+  --sky-brightness: 1;
+  --sky-shadow: drop-shadow(0 18px 10px rgba(255, 255, 255, 0.2));
+
+  /* tilt */
+  --sky-z: 30px;
+}
+
+/* BLOG + POST PAGES (dim skyline) */
+body.blog{
+  --sky-opacity: 0.33;
+  --sky-brightness: 0.55;
+  --sky-shadow: none;
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+
+  /* keep scroll but hide scrollbar (best-effort) */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* legacy Edge */
+}
+body::-webkit-scrollbar{ display: none; } /* Chrome/Safari/Edge */
+
+/* PAGE */
+.page{
+  position: relative;
+  min-height: var(--pageH);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* TOP */
+.top{
+  position: relative;
+  z-index: 2;
+  padding: var(--padTop) var(--padX) 0;
+}
+
+/* NAV */
+.nav{
+  display: flex;
+  justify-content: center;
+  gap: clamp(22px, 16vw, 220px);
+  flex-wrap: wrap; /* helps smaller devices without breaking layout */
+}
+
+.nav-link{
+  position: relative;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  font-size: clamp(13px, 1.8vw, 18px);
+  padding: 10px 14px 18px;
+  opacity: 0.95;
+}
+
+/* inverted half rectangle (bottom + right) */
+.nav-link::after{
+  content:"";
+  position:absolute;
+  left: 50%;
+  bottom: 4px;
+  width: clamp(68px, 8vw, 120px);
+  height: clamp(18px, 2.4vw, 28px);
+  transform: translateX(-40%);
+  border-bottom: 2px solid transparent;
+  border-right: 2px solid transparent;
+  opacity: 0;
+  transition: opacity 160ms ease, border-color 500ms ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after{
+  border-bottom-color: var(--line);
+  border-right-color: var(--line);
+  opacity: 1;
+}
+
+/* INTRO (HOME) */
+.intro{
+  margin-top: clamp(40px, 6vh, 120px);
+  max-width: min(1000px, 92vw);
+}
+
+.name{
+  margin: 0 0 10px 0;
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: 0.1em;
+  transition: 200ms;
+}
+
+.name:hover{
+  letter-spacing: 0.102em;
+}
+
+
+
+.bio{
+  margin: 0;
+  font-weight: 400;
+  opacity: 0.92;
+  font-size: clamp(14px, 1.7vw, 18px);
+  line-height: 1.45;
+}
+
+.bio .em{
+  transition: 200ms;
+  font-weight: 600;
+  background: linear-gradient(
+    90deg,
+    #8f2ecc,
+    #489454,
+    #8f2ecc,
+    #489454,
+    #dd7d7d
+  );
+  text-shadow: 0 0 6px rgba(255,255,255,0.15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.intro-link{
+  display: inline-block;
+  line-height: 5;
+  text-decoration: none;
+  transition: 200ms;
+  letter-spacing: 0.25em;
+  color: var(--text);
+  font-size: clamp(10px, 1.7vw, 14px);
+}
+.intro-link:hover{
+  letter-spacing: 0.28em;
+}
+
+/* HERO IMAGE + TILT */
+.hero{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  transform-style: flat;
+  perspective: 900px;
+}
+
+.hero img{
+  width: 100%;
+  height: auto;
+  display: block;
+
+  opacity: var(--sky-opacity);
+  filter: brightness(var(--sky-brightness)) var(--sky-shadow);
+
+  transform: translate3d(0, 0, var(--sky-z));
+  transform-origin: 100% 750%;
+  transition: transform 500ms ease-out;
+  will-change: transform;
+}
+body .hero img{
+  opacity: 0; /* start hidden */
+  animation: skylineIn 250ms ease-out 150ms forwards;
+}
+
+@keyframes skylineIn{
+  to { opacity: var(--sky-opacity); }
+}
+
+/* Respect reduced-motion users */
+@media (prefers-reduced-motion: reduce){
+  body.home .hero img{
+    animation: none;
+    opacity: var(--sky-opacity);
+  }
+}
+
+
+/* BLOG LIST (blog.html) */
+.blog-list{
+  margin-top: clamp(40px, 7vh, 110px);
+  max-width: 900px;
+}
+
+.blog-heading{
+  margin: 0 0 30px 0;
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.blog-items{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.blog-item{
+  display: block;
+  text-decoration: none;
+  color: var(--text);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(245,239,230,0.12);
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+.blog-item:hover{
+  transform: translateX(6px);
+  opacity: 0.85;
+}
+
+.blog-date{
+  font-size: 12px;
+  opacity: 0.6;
+  letter-spacing: 0.12em;
+}
+.blog-title{
+  margin-top: 4px;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* BLOG POST PAGE (posts/*.html) */
+.post{
+  margin-top: clamp(36px, 6vh, 80px);
+  max-width: 820px;
+}
+
+.back{
+  display: inline-block;
+  margin-bottom: 16px;
+  text-decoration: none;
+  color: var(--text);
+  opacity: 0.75;
+  letter-spacing: 0.06em;
+}
+.back:hover{ opacity: 1; }
+
+/* ============================
+   BLOG POST POLISH (add below)
+   ============================ */
+
+/* Slightly nicer reading measure */
+.post{
+  max-width: 860px; /* a touch wider than 820 but still comfy */
+}
+
+/* Add a proper body wrapper so the post looks intentional */
+.post-body{
+  margin-top: 18px;
+  font-size: clamp(14px, 1.7vw, 18px);
+  line-height: 1.8;
+  opacity: 0.94;
+
+  /* subtle readability */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Make the opening paragraph feel like a “lead” */
+.post-body .lead,
+.post-body p.lead{
+  font-size: clamp(15px, 1.95vw, 20px);
+  line-height: 1.85;
+  opacity: 0.98;
+  margin: 0 0 18px 0;
+}
+
+/* Headings inside the article */
+.post-body h2{
+  margin: 28px 0 10px 0;
+  font-size: clamp(16px, 2.2vw, 22px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  opacity: 0.98;
+}
+
+.post-body h3{
+  margin: 20px 0 8px 0;
+  font-size: clamp(15px, 2vw, 19px);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  opacity: 0.96;
+}
+
+/* A sleek divider line between major sections (optional via <hr>) */
+.post-body hr{
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(222,138,255,0.35), transparent);
+  margin: 26px 0;
+}
+
+/* Links inside posts: clean underline + glow on hover */
+.post-body a,
+.post-meta a{
+  color: var(--text);
+  text-decoration: line;
+  position: relative;
+  opacity: 0.92;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.post-body a::after,
+.post-meta a::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(222,138,255,0.0), rgba(222,138,255,0.65), rgba(222,138,255,0.0));
+  transform: scaleX(0.65);
+  transform-origin: center;
+  opacity: 0.65;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.post-body a:hover,
+.post-meta a:hover{
+  opacity: 1;
+}
+
+.post-body a:hover::after,
+.post-meta a:hover::after{
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* Inline emphasis and code */
+.post-body em{
+  font-style: italic;
+  opacity: 0.98;
+}
+
+.post-body strong{
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+/* Inline code */
+.post-body code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+  padding: 0.12em 0.38em;
+  border-radius: 8px;
+  background: rgba(245,239,230,0.06);
+  border: 1px solid rgba(245,239,230,0.10);
+}
+
+/* Blockquotes for “big idea” statements */
+.post-body blockquote{
+  margin: 18px 0;
+  padding: 14px 16px;
+  border-left: 2px solid rgba(222, 138, 255, 0.55);
+  background: rgba(245,239,230,0.04);
+  border-radius: 12px;
+  opacity: 0.96;
+}
+.post-body blockquote p{
+  margin: 0;
+}
+
+/* Lists: more breathing room and nicer bullets */
+.post-body ul,
+.post-body ol{
+  margin: 0 0 16px 20px;
+  padding: 0;
+}
+.post-body li{
+  margin: 6px 0;
+}
+
+/* Optional “callout” boxes you can use in HTML:
+   <p class="callout">...</p>
+*/
+.post-body .callout{
+  margin: 18px 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(222,138,255,0.18);
+  border-radius: 14px;
+  background: radial-gradient(120% 120% at 20% 10%,
+    rgba(222,138,255,0.12),
+    rgba(245,239,230,0.03) 45%,
+    rgba(4,4,6,0.0) 100%);
+}
+
+/* Nice “section card” style if you wrap sections:
+   <section class="post-section">...</section>
+*/
+.post-body .post-section{
+  margin: 18px 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(245,239,230,0.02);
+  border: 1px solid rgba(245,239,230,0.06);
+}
+
+/* Footer/meta styling */
+.post-meta{
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(245,239,230,0.10);
+  opacity: 0.9;
+}
+.post-meta p{
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+}
+.post-meta .byline{
+  opacity: 0.75;
+}
+
+/* Make the “Back” link feel like a UI element */
+.back{
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(245,239,230,0.10);
+  background: rgba(245,239,230,0.03);
+  transition: transform 160ms ease, opacity 160ms ease, border-color 200ms ease;
+}
+.back:hover{
+  transform: translateX(-2px);
+  border-color: rgba(222,138,255,0.25);
+}
+
+/* Slight glow around the post container for depth */
+.post{
+  position: relative;
+}
+.post::before{
+  content: "";
+  position: absolute;
+  inset: -14px -14px -14px -14px;
+  border-radius: 22px;
+  pointer-events: none;
+  background: radial-gradient(120% 120% at 20% 0%,
+    rgba(222,138,255,0.10),
+    rgba(4,4,6,0.0) 55%);
+  filter: blur(0px);
+  opacity: 0.9;
+  z-index: -1;
+}
+
+/* Better spacing on small phones */
+@media (max-width: 520px){
+  .post-body{
+    line-height: 1.75;
+  }
+  .post-body h2{
+    margin-top: 22px;
+  }
+  .post::before{
+    inset: -10px;
+  }
+}
