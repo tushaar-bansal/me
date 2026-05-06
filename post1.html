@@ -1,40 +1,201 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>True Semantics: Does AI Really Need Embodiment?</title>
 
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="blog">
   <main class="page">
     <header class="top">
       <nav class="nav">
-        <a class="nav-link" href="../blog.html">BLOG</a>
-        <a class="nav-link" href="../index.html">HOME</a>
-        <a class="nav-link" href="../projects.html">PROJECTS</a>
-        <a class="nav-link" href="../contact.html">CONTACT</a>
+        <a class="nav-link active" href="blog.html">BLOG</a>
+        <a class="nav-link" href="index.html">HOME</a>
+        <a class="nav-link" href="about.html">ABOUT ME</a>
+        <a class="nav-link" href="contact.html">CONTACT</a>
       </nav>
 
       <article class="post">
-        <a href="../blog.html" class="back">← Back</a>
+        <a href="blog.html" class="back">← Back</a>
 
         <h1 class="post-h1">True Semantics: Does AI Really Need Embodiment?</h1>
 
         <div class="post-body">
 
           <p class="lead">
-            A child touches an apple, smells it, tastes it, drops it, watches it fall and finally hears the crunch when they bite it. Only later does the word <em>apple</em> bind to this experience. Instead of memorizing a symbol, the child builds a multisensory model.
+            A child touches an apple, smells it, tastes it, drops it, watches it fall and finally hears the crunch when they bite it. Only later does the word <em>apple</em> bind to that experience. Instead of memorizing a symbol, the child builds a multisensory model of the world.
           </p>
-
-          <h2>Language vs. Lived Experience</h2>
 
           <p>
-            A large language model, by contrast, learns the token <strong>“apple”</strong> from plain text. It sees sentences such as:
+            A large language model, on the other hand, learns the same word from text. It sees sentences like “an apple is a fruit,” “she baked an apple pie,” and “Apple released a new iPhone.” From that, it builds relationships between symbols.
           </p>
 
+          <p>
+            That difference raises the question I keep coming back to: can AI develop true semantic understanding from language alone, or does it need embodiment?
+          </p>
+
+          <h2>The Human Model of Meaning</h2>
+
+          <p>
+            When we think of an apple, meaning is not stored as one clean definition. Parts of our sensory systems are involved. We remember shape, color, taste, smell, texture, and action. The concept is distributed across perception, memory, and motor experience.
+          </p>
+
+          <p>
+            This is often described as <a href="https://en.wikipedia.org/wiki/Grounded_cognition" target="_blank" rel="noopener">grounded cognition</a>. The basic idea is that human concepts are connected to bodily and sensory experience.
+          </p>
+
+          <p>
+            For us, meaning is tied to physical reality. Objects have weight. Surfaces have friction. Gravity pulls downward. Causes precede effects. We do not learn these only as statements. We experience them constantly.
+          </p>
+
+          <h2>The AI Model of Meaning</h2>
+
+          <p>
+            Large language models do not taste apples. They do not drop them. They do not feel texture, weight, or resistance.
+          </p>
+
+          <p>
+            Instead, they learn from statistical patterns in language. Words that appear together frequently become connected in high-dimensional space. Across massive amounts of text, these patterns form a kind of semantic map.
+          </p>
+
+          <p>
+            In that sense, meaning for an LLM is relational. A word means something because of where it sits among other words, phrases, and contexts.
+          </p>
+
+          <p>
+            But what makes this interesting is that language itself is already a compressed record of human experience. When people write, they encode what they have seen, felt, believed, and understood. So even if an LLM is not grounded directly, it may still inherit indirect grounding through language.
+          </p>
+
+          <h2>The Symbol Grounding Problem</h2>
+
+          <p>
+            This connects to the classic <a href="https://en.wikipedia.org/wiki/Symbol_grounding_problem" target="_blank" rel="noopener">symbol grounding problem</a>. If a system only manipulates symbols using other symbols, do those symbols ever truly mean anything?
+          </p>
+
+          <p>
+            One view says no. Without sensory connection, symbols remain empty. They only point to each other.
+          </p>
+
+          <p>
+            Another view says language is already grounded by humans, and a model trained deeply enough on language can absorb enough structure to approximate understanding.
+          </p>
+
+          <p>
+            I think the answer is probably somewhere in between.
+          </p>
+
+          <h2>The Abstraction Issue</h2>
+
+          <p>
+            LLMs are surprisingly strong at abstraction. They can explain code, summarize dense ideas, compare philosophies, and reason across domains.
+          </p>
+
+          <p>
+            That makes sense because language is already an abstract layer. Humans take messy lived experience and compress it into words. Models trained on those words operate directly in that compressed symbolic space.
+          </p>
+
+          <p>
+            But abstraction without grounding can become unstable. When a task depends on physical intuition, causal structure, or unfamiliar real-world constraints, the model may sound confident while missing something basic.
+          </p>
+
+          <p>
+            Humans build abstractions slowly, on top of perception and interaction. LLMs begin inside abstraction. That gives them power, but also brittleness.
+          </p>
+
+          <h2>Reasoning Without Experience</h2>
+
+          <p>
+            When we imagine dropping a glass, we do not only retrieve a sentence about gravity. We simulate the event. We expect the fall, the impact, and the possibility of breaking.
+          </p>
+
+          <p>
+            An LLM does something different. It generates reasoning by predicting plausible next steps based on patterns it has seen during training.
+          </p>
+
+          <p>
+            This can work extremely well for structured problems. But when the structure becomes vague, physical, or unfamiliar, reasoning can weaken because the system is not anchored to lived experience.
+          </p>
+
+          <h2>The Rise of Multimodal Systems</h2>
+
+          <p>
+            Modern AI is starting to move beyond language-only training. Vision-language models, audio-text systems, robotics foundation models, and world models trained on video are all attempts to give AI richer input streams.
+          </p>
+
+          <p>
+            These systems move closer to human-like learning because they connect language with other forms of data.
+          </p>
+
+          <p>
+            But multimodal training is still not the same as embodiment. A model can process images of apples without ever needing to pick one up, bite it, drop it, or survive in a world where its actions have consequences.
+          </p>
+
+          <h2>Does Intelligence Require a Body?</h2>
+
+          <p>
+            I see three possible positions.
+          </p>
+
+          <p>
+            The strong embodiment view says true semantics requires physical grounding. Without a body, intelligence remains incomplete.
+          </p>
+
+          <p>
+            The weaker view says physical biology is not required, but some rich multimodal or simulated environment may be necessary.
+          </p>
+
+          <p>
+            The language-first view says language already contains enough compressed human experience for models to approximate understanding through scale and abstraction.
+          </p>
+
+          <p>
+            Which answer feels right depends on what we mean by intelligence.
+          </p>
+
+          <h2>Final Thought</h2>
+
+          <p>
+            AI forces us to ask what understanding actually is.
+          </p>
+
+          <p>
+            Is it sensory grounding? Is it causal modeling? Is it abstraction? Is it the ability to behave intelligently even without experience?
+          </p>
+
+          <p>
+            Maybe true intelligence is not defined only by whether a system has a body. Maybe it is defined by how deeply it can model reality.
+          </p>
+
+          <p>
+            But for now, the difference remains clear: humans learn meaning from worlds first and words second. LLMs learn from words first and try to infer the world behind them.
+          </p>
+
+        </div>
+
+        <footer class="post-meta">
+          <p>
+            Further reading:
+            <a href="https://en.wikipedia.org/wiki/Grounded_cognition" target="_blank" rel="noopener">Grounded Cognition</a> ·
+            <a href="https://en.wikipedia.org/wiki/Embodied_cognition" target="_blank" rel="noopener">Embodied Cognition</a> ·
+            <a href="https://en.wikipedia.org/wiki/Symbol_grounding_problem" target="_blank" rel="noopener">Symbol Grounding Problem</a>
+          </p>
+          <p class="byline">
+            Written by <strong>Tushaar Bansal</strong> ·
+            <time datetime="2026-02-17">February 17, 2026</time>
+          </p>
+        </footer>
+      </article>
+    </header>
+  </main>
+</body>
+</html>
           <ul>
             <li>“An apple is a fruit.”</li>
             <li>“She baked an apple pie.”</li>
